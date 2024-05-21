@@ -1,6 +1,6 @@
 /*********************************************************************************************************
  * Objetivo: Arquivo responsável pelas variáveis globais do projeto, onde haverão mensagens, status_code e outros conteúdos para Projeto
- * Data: 20/03/2024
+ * Data: 16/05/2024
  * Auto: Guilherme Abel
  * Versão 1.0
  ********************************************************************************************************/
