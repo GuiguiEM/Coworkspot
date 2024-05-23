@@ -72,11 +72,12 @@ app.get('/v2/coworkspot/getUsuario/:id', cors(), async function(request, respons
     response.json(dadosUsuarios)
 })
 
-app.post('/v2/coworkspot/postUsuario', cors(), async function(request, response, next){
+app.post('/v2/coworkspot/postUsuario', cors(), bodyParser.json(), async function(request, response, next){
 
     let contentType = request.headers['content-type']
-    let dadosBody = request.body
+    let dadosBody = await request.body
 
+    console.log(request.body)
     let dadosUsuarios = await controllerUsuarios.setInserirUsuario(dadosBody, contentType)
 
     response.status(dadosUsuarios.status_code)

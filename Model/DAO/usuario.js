@@ -13,37 +13,37 @@ const prisma = new PrismaClient();
 
 /***************************************************************************************************************** */
 
-const insertUsuario = async function(dadosUsuarios){
-    
-    try{
-        
-        let sql
+const insertUsuario = async function(dadosUsuarios) {
 
-        sql = `insert into tbl_usuarios(
-                                    nome,
-                                    cpf,
-                                    cnpj,
-                                    email,
-                                    senha
-        )values(
-                                    '${dadosUsuarios.nome}',
-                                    '${dadosUsuarios.cpf}',
-                                    '${dadosUsuarios.cnpj}',
-                                    '${dadosUsuarios.email}',
-                                    '${dadosUsuarios.senha}'
-        )`
+    try {
+        let sql = `
+            INSERT INTO tbl_usuarios(
+                nome,
+                cpf,
+                cnpj,
+                email,
+                senha
+            ) VALUES (
+                '${dadosUsuarios.nome}',
+                ${dadosUsuarios.cpf ? `'${dadosUsuarios.cpf}'`: 'null'},
+                ${dadosUsuarios.cnpj ? `'${dadosUsuarios.cnpj}'`: 'null'},
+                '${dadosUsuarios.email}',
+                '${dadosUsuarios.senha}'
+            )`;
 
-        let rsUsuario = await prisma.$queryRawUnsafe(sql)
+        let rsUsuario = await prisma.$queryRawUnsafe(sql);
         
-        if(rsUsuario){
-            return true
-        }else{
-            return false
+        if (rsUsuario) {
+            return true;
+        } else {
+            return false;
         }
-    }catch(error){
-        return false
+    } catch (error) {
+        console.log(error);
+        return false;
     }
 }
+
 
 const updateUsuario = async function(){
 
